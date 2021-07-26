@@ -1,49 +1,42 @@
 import React, { useRef, useState } from "react";
+import Hint from "../../tools/Hint";
 import { MathComponent } from "../../../components/MathJax";
+
 import {
-  SimpleGrid,
-  Box,
   Alert,
   AlertIcon,
   Button,
-  AlertTitle,
-  AlertDescription,
-  Flex,
   Grid,
   GridItem,
+  Flex,
 } from "@chakra-ui/react";
 
-import Hint from "../../tools/Hint";
-
-const FCCpaso1 = ({
+export const DCpaso1 = ({
   ejercicio,
   setPaso1Valido,
   paso1Valido,
   hintsTerminado,
   setHintsTerminado,
 }) => {
-  const respuesta = useRef(null);
+  const respuesta1 = useRef(null);
+  const respuesta2 = useRef(null);
   const [estado, setEstado] = useState(null);
   //let idPasoSiguiente = null;
   const correctas = ejercicio.answers.map((elemento) => elemento.answer);
 
   const comparar = () => {
-    //parametro de entrada recibido, replace elimina "espacios" y "*", trabajar todo en minuscula
-    const entrada = respuesta.current.value.replace(/[*]| /g, "").toLowerCase();
-
-    //valida que la entrada es correctas
-    const valida = (element) => element === entrada;
-    //El método some() comprueba si al menos un elemento del array
-    //cumple con la condición implementada por la función proporcionada.
+    const entrada = [
+      respuesta1.current.value.replace(/[*]| /g, "").toLowerCase(),
+      respuesta2.current.value.replace(/[*]| /g, "").toLowerCase(),
+    ];
+    const valida = (element) =>
+      element[0] === entrada[0] && element[1] === entrada[1];
     if (correctas.some(valida)) {
-      setEstado(
-        <Alert status="success">
-          <AlertIcon />
-          <AlertTitle>{ejercicio.validation}</AlertTitle>
-        </Alert>
+      setPaso1Valido(
+        (paso1Valido = ejercicio.answers[correctas.findIndex(valida)].nextStep)
       );
-      setPaso1Valido((paso1Valido = "Terminado"));
     } else {
+      //error cuando la entrada es incorrecta
       setEstado(
         //error cuando la entrada es incorrecta
         <Alert status="error">
@@ -53,7 +46,6 @@ const FCCpaso1 = ({
       );
     }
   };
-
   return (
     <>
       <br></br>
@@ -70,9 +62,9 @@ const FCCpaso1 = ({
 
         <GridItem colSpan={4}>
           <Flex align="center">
-            <label>(&nbsp;</label>
+            <label>( </label>
             <input
-              size="10"
+              size="12"
               style={{
                 backgroundColor: "#21232A",
                 border: "none",
@@ -81,35 +73,41 @@ const FCCpaso1 = ({
                 fontStyle: "italic",
               }}
               type="text"
-              name="name"
-              className="form-control"
-              placeholder="Ingrese factor común"
+              placeholder="Ingrese grupo 1"
               autoComplete="off"
-              ref={respuesta}
+              ref={respuesta1}
               disabled={paso1Valido != null}
             ></input>
-            <label>&nbsp;)</label>
-            {paso1Valido === null && (
-              <>
-                <label>&nbsp;(?)&nbsp;</label>
-                <Button colorScheme="cyan" variant="outline" onClick={comparar}>
-                  Aceptar
-                </Button>
-              </>
-            )}
-            {paso1Valido !== null && (
-              <>
-                <MathComponent
-                  tex={String.raw`${ejercicio.result}`}
-                  display={false}
-                />
-              </>
+            <label htmlFor="label2">)</label>
+            <MathComponent tex={String.raw`^2`} display={false} />
+            <label>&nbsp;- ( </label>
+            <input
+              size="12"
+              style={{
+                backgroundColor: "#21232A",
+                border: "none",
+                color: "white",
+                textAlign: "center",
+                fontStyle: "italic",
+              }}
+              type="text"
+              placeholder="Ingrese grupo 2"
+              autoComplete="off"
+              ref={respuesta2}
+              disabled={paso1Valido != null}
+            ></input>
+            <label htmlFor="label3">)</label>
+            <MathComponent tex={String.raw`^2`} display={false} /> &nbsp;
+            {paso1Valido == null && (
+              <Button colorScheme="cyan" variant="outline" onClick={comparar}>
+                Aceptar
+              </Button>
             )}
           </Flex>
         </GridItem>
 
         <GridItem colSpan={1}>
-          {paso1Valido === null && (
+          {paso1Valido == null && (
             <Hint
               ejercicio={ejercicio.hints}
               setHintsTerminado={setHintsTerminado}
@@ -117,10 +115,7 @@ const FCCpaso1 = ({
           )}
         </GridItem>
       </Grid>
-
-      <br></br>
-      {estado}
+      {paso1Valido == null && estado}
     </>
   );
 };
-export default FCCpaso1;

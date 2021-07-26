@@ -3,7 +3,6 @@ import React, { useState } from "react";
 
 import FCpaso1 from "./steps/FCpaso1";
 import { MathComponent } from "../../components/MathJax";
-//import {MathComponent} from 'mathjax-react';
 //import {Accordion,Card} from 'react-bootstrap';
 import { BreadcrumbTutor } from "../tools/BreadcrumbTutor";
 
@@ -25,10 +24,13 @@ const FC = ({ ejercicio }) => {
   const [hintsTerminado, setHintsTerminado] = useState(null);
 
   return (
-    <>
-      <BreadcrumbTutor root="Factorización" item={ejercicio.itemTitle}></BreadcrumbTutor>
+    <div>
+      <BreadcrumbTutor
+        root="Factorización"
+        item={ejercicio.itemTitle}
+      ></BreadcrumbTutor>
 
-      <h2 text-align="center">{ejercicio.text}</h2>
+      {ejercicio.text}
       <MathComponent tex={ejercicio.steps[0].expression} display={true} />
 
       <Accordion defaultIndex={[0]} allowMultiple>
@@ -52,7 +54,7 @@ const FC = ({ ejercicio }) => {
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
-    </>
+    </div>
   );
 };
 
