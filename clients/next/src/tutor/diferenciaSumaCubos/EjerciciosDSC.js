@@ -11,9 +11,9 @@ export const Ejercicio1 = {
       step: "Paso 1: identificar términos al cubo",
       result: "(x)^3-(y)^3",
       hints: [
-        { hintId: 0, hint: "hint 1" },
-        { hintId: 1, hint: "hint 2" },
-        { hintId: 2, hint: "Los cubos a ingresar son: (x)^3 - (y)^3" },
+        { hintId: 0, hint: "Ingresar raices cúbicas de los valores" },
+        { hintId: 1, hint: "Un valor al cubo a ingresar es x" },
+        { hintId: 2, hint: "Los cubos a ingresar son: (x)³ - (y)³" },
       ],
       answers: [{ answer: ["x", "y"], nextStep: "1" }],
       error:
@@ -26,9 +26,9 @@ export const Ejercicio1 = {
       step: "Paso 2: ingresar la identidad (diferencia de cubos)",
       result: "(x-y)(x^2+xy+y^2)",
       hints: [
-        { hintId: 0, hint: "hint 1" },
-        { hintId: 1, hint: "hint 2" },
-        { hintId: 2, hint: "(x-y)(x^2+xy+y^2)" },
+        { hintId: 0, hint: "Utilice identidad de cubos" },
+        { hintId: 1, hint: "La identidad de cubos es (x±y)(x²±xy+y²)" },
+        { hintId: 2, hint: "(x-y)(x²+xy+y²)" },
       ],
       //answers:["x-y","x^2+xy+y^2"],
       answers: [{ answer: ["x-y", "x^2+xy+y^2"], nextStep: null }],

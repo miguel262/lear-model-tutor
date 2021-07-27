@@ -37,9 +37,12 @@ export const Ejercicio1 = {
         ["(b)", "(x+y)"],
       ],
       hints: [
-        { hintId: 0, hint: "Hint 1" },
-        { hintId: 1, hint: "Hint 2" },
-        { hintId: 2, hint: "Hint 3" },
+        {
+          hintId: 0,
+          hint: "El factor común del primer grupo es el término que se repite en ambos sumando",
+        },
+        { hintId: 1, hint: "El factor común del primer grupo es a" },
+        { hintId: 2, hint: "Los factores comunes a ingresar son a y b" },
       ],
       answers: { answer: ["a", "b"], nextStep: "3" },
       //soluciones: {entrada:["a","b"], pasoSiguiente: "3"} ,
@@ -57,9 +60,12 @@ export const Ejercicio1 = {
         ["(y)", "(a+b)"],
       ],
       hints: [
-        { hintId: 0, hint: "Hint 1" },
-        { hintId: 1, hint: "Hint 2" },
-        { hintId: 2, hint: "Hint 3" },
+        {
+          hintId: 0,
+          hint: "El factor común del primer grupo es el término que se repite en ambos sumando",
+        },
+        { hintId: 1, hint: "El factor común del primer grupo es x" },
+        { hintId: 2, hint: "Los factores comunes a ingresar son x e y" },
       ],
       answers: { answer: ["x", "y"], nextStep: "4" },
       error:
@@ -76,7 +82,7 @@ export const Ejercicio1 = {
       result: "(a+b)",
       hints: [
         { hintId: 0, hint: "ver variable que se repite en ambos sumandos" },
-        { hintId: 1, hint: "Hint 2" },
+        { hintId: 1, hint: "el factor común es una suma de variables" },
         { hintId: 2, hint: "el factor común de la expresión es: x + y" },
       ],
       //entrada:["x+y"],
@@ -95,9 +101,9 @@ export const Ejercicio1 = {
       result: "(x+y)",
       //hint_solicitado:["ver variable que se repite en ambos sumandos","el factor común es a + b"],
       hints: [
-        { hintId: 0, hint: "ver variable que se repite en ambos sumandos" },
-        { hintId: 1, hint: "Hint 2" },
-        { hintId: 2, hint: "el factor común de la expresión es: a + b" },
+        { hintId: 0, hint: "Ver variable que se repite en ambos sumandos" },
+        { hintId: 1, hint: "El factor común es una suma de variables" },
+        { hintId: 2, hint: "El factor común de la expresión es: a + b" },
       ],
       //entrada:["a+b"],
       answers: [{ answer: "a+b", nextStep: null }],

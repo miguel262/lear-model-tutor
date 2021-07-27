@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import Hint from "../../tools/Hint";
 import { MathComponent } from "../../../components/MathJax";
-
 import {
   Alert,
   AlertIcon,
@@ -14,32 +13,37 @@ import {
   WrapItem,
 } from "@chakra-ui/react";
 
-export const DCpaso1 = ({
+export const TCpaso6 = ({
   ejercicio,
-  setPaso1Valido,
-  paso1Valido,
+  setPaso6Valido,
+  paso6Valido,
   hintsTerminado,
   setHintsTerminado,
+  a,
 }) => {
   const respuesta1 = useRef(null);
   const respuesta2 = useRef(null);
   const [estado, setEstado] = useState(null);
-  //let idPasoSiguiente = null;
-  const correctas = ejercicio.answers.map((elemento) => elemento.answer);
-
+  const correctas = ejercicio.answers[0].answer;
   const comparar = () => {
     const entrada = [
       respuesta1.current.value.replace(/[*]| /g, "").toLowerCase(),
       respuesta2.current.value.replace(/[*]| /g, "").toLowerCase(),
     ];
     const valida = (element) =>
-      element[0] === entrada[0] && element[1] === entrada[1];
+      (element[0] === entrada[0] && element[1] === entrada[1]) ||
+      (element[0] === entrada[1] && element[1] === entrada[0]);
     if (correctas.some(valida)) {
-      setPaso1Valido(
-        (paso1Valido = ejercicio.answers[correctas.findIndex(valida)].nextStep)
+      setEstado(
+        <Alert status="success">
+          <AlertIcon />
+          {ejercicio.validation}
+          &nbsp;
+          <MathComponent tex={ejercicio.result} display={false} />
+        </Alert>
       );
+      setPaso6Valido((paso6Valido = "Terminado"));
     } else {
-      //error cuando la entrada es incorrecta
       setEstado(
         //error cuando la entrada es incorrecta
         <Alert status="error">
@@ -55,7 +59,7 @@ export const DCpaso1 = ({
       <Wrap>
         <WrapItem w={250}>
           <Flex align="center">
-            <p> &nbsp; &nbsp; </p>
+            &nbsp; &nbsp;
             <MathComponent
               tex={String.raw`${ejercicio.expression}`}
               display={false}
@@ -65,7 +69,7 @@ export const DCpaso1 = ({
 
         <WrapItem w={550}>
           <Flex align="center">
-            <label>( </label>
+            <label>{a !== 1 ? a : ""}(</label>
             <Input
               style={{
                 textAlign: "center",
@@ -73,14 +77,13 @@ export const DCpaso1 = ({
                 fontWeight: "600",
               }}
               size="sm"
-              w="18%"
+              w="25%"
               focusBorderColor="#9DECF9"
-              placeholder="Cuadrado 1"
+              placeholder="Primer factor"
               ref={respuesta1}
-              isReadOnly={paso1Valido != null}
+              isReadOnly={paso6Valido != null}
             />
-            <label htmlFor="label2">)²</label>
-            <label>&nbsp;- ( </label>
+            <label>)(</label>
             <Input
               style={{
                 textAlign: "center",
@@ -88,15 +91,14 @@ export const DCpaso1 = ({
                 fontWeight: "600",
               }}
               size="sm"
-              w="18%"
+              w="25%"
               focusBorderColor="#9DECF9"
-              placeholder="Cuadrado 2"
+              placeholder="Segundo factor"
               ref={respuesta2}
-              isReadOnly={paso1Valido != null}
+              isReadOnly={paso6Valido != null}
             />
-            <label htmlFor="label3">)²</label>
-            &nbsp;&nbsp;&nbsp;
-            {paso1Valido == null && (
+            <label>) &nbsp; &nbsp; &nbsp;</label>
+            {paso6Valido == null && (
               <Button
                 colorScheme="cyan"
                 variant="outline"
@@ -110,7 +112,7 @@ export const DCpaso1 = ({
         </WrapItem>
 
         <WrapItem>
-          {paso1Valido == null && (
+          {paso6Valido == null && (
             <Hint
               ejercicio={ejercicio.hints}
               setHintsTerminado={setHintsTerminado}
@@ -119,7 +121,7 @@ export const DCpaso1 = ({
         </WrapItem>
       </Wrap>
       <br></br>
-      {paso1Valido == null && estado}
+      {estado}
     </>
   );
 };

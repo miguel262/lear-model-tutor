@@ -8,6 +8,9 @@ import {
   Alert,
   AlertIcon,
   Button,
+  Input,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 
 const FCCpaso2 = ({
@@ -44,8 +47,8 @@ const FCCpaso2 = ({
   return (
     <>
       <br></br>
-      <Grid templateColumns="repeat(7, 1fr)" gap={1}>
-        <GridItem colSpan={2}>
+      <Wrap>
+        <WrapItem w={250}>
           <Flex align="center">
             <p> &nbsp; &nbsp; </p>
             <MathComponent
@@ -53,67 +56,69 @@ const FCCpaso2 = ({
               display={false}
             />
           </Flex>
-        </GridItem>
-        <GridItem colSpan={4} style={{ padding: 0 }}>
+        </WrapItem>
+
+        <WrapItem w={550}>
           <Flex align="center">
             <label>(&nbsp;</label>
-            <input
+            <Input
               style={{
-                backgroundColor: "#21232A",
-                border: "none",
-                color: "white",
                 textAlign: "center",
                 fontStyle: "italic",
+                fontWeight: "600",
               }}
-              size="11"
-              type="text"
+              size="sm"
+              w="20%"
+              focusBorderColor="#9DECF9"
               placeholder="Factor común 1"
-              autoComplete="off"
               ref={respuesta1}
-              disabled={paso2Valido != null}
-            ></input>
+              isReadOnly={paso2Valido != null}
+            />
             <label>&nbsp;)</label>
             <MathComponent tex={ejercicio.result[0][1]} display={false} />
             <label>&nbsp;+&nbsp;</label>
             <label>(&nbsp;</label>
-            <input
+            <Input
               style={{
-                backgroundColor: "#21232A",
-                border: "none",
-                color: "white",
                 textAlign: "center",
                 fontStyle: "italic",
+                fontWeight: "600",
               }}
-              size="11"
-              type="text"
+              size="sm"
+              w="20%"
+              focusBorderColor="#9DECF9"
               placeholder="Factor común 2"
-              autoComplete="off"
               ref={respuesta2}
-              disabled={paso2Valido != null}
-            ></input>
+              isReadOnly={paso2Valido != null}
+            />
             <label>&nbsp;)</label>
             <MathComponent
               tex={ejercicio.result[1][1]}
               display={false}
               style={{ textAlign: "center" }}
             />
-            &nbsp;
+            &nbsp;&nbsp;&nbsp;
             {paso2Valido == null && (
-              <Button colorScheme="cyan" variant="outline" onClick={comparar}>
+              <Button
+                colorScheme="cyan"
+                variant="outline"
+                onClick={comparar}
+                size="sm"
+              >
                 Aceptar
               </Button>
             )}
           </Flex>
-        </GridItem>
-        <GridItem colSpan={1}>
+        </WrapItem>
+        <WrapItem>
           {paso2Valido == null && (
             <Hint
               ejercicio={ejercicio.hints}
               setHintsTerminado={setHintsTerminado}
             ></Hint>
           )}
-        </GridItem>
-      </Grid>
+        </WrapItem>
+      </Wrap>
       <br></br>
       {paso2Valido == null && estado}
     </>

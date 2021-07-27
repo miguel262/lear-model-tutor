@@ -8,6 +8,9 @@ import {
   Grid,
   GridItem,
   Flex,
+  Input,
+  WrapItem,
+  Wrap,
 } from "@chakra-ui/react";
 
 export const DSCpaso2 = ({
@@ -50,8 +53,8 @@ export const DSCpaso2 = ({
   return (
     <>
       <br></br>
-      <Grid templateColumns="repeat(7, 1fr)" gap={1}>
-        <GridItem colSpan={2}>
+      <Wrap>
+        <WrapItem w={250}>
           <Flex align="center">
             &nbsp; &nbsp;
             <MathComponent
@@ -59,61 +62,63 @@ export const DSCpaso2 = ({
               display={false}
             />
           </Flex>
-        </GridItem>
+        </WrapItem>
 
-        <GridItem colSpan={4}>
+        <WrapItem w={550}>
           <Flex align="center">
             <label>( </label>
-            <input
-              size="12"
+            <Input
               style={{
-                backgroundColor: "#21232A",
-                border: "none",
-                color: "white",
                 textAlign: "center",
                 fontStyle: "italic",
+                fontWeight: "600",
               }}
-              type="text"
-              placeholder="Ingrese grupo 1"
-              autoComplete="off"
+              size="sm"
+              w="23%"
+              focusBorderColor="#9DECF9"
+              placeholder="Ingrese factor 1"
               ref={respuesta1}
-              disabled={paso2Valido != null}
-            ></input>
+              isReadOnly={paso2Valido != null}
+            />
             <label htmlFor="label2">)(</label>
-            <input
-              size="12"
+            <Input
               style={{
-                backgroundColor: "#21232A",
-                border: "none",
-                color: "white",
                 textAlign: "center",
                 fontStyle: "italic",
+                fontWeight: "600",
               }}
-              type="text"
-              placeholder="Ingrese grupo 2"
-              autoComplete="off"
+              size="sm"
+              w="23%"
+              focusBorderColor="#9DECF9"
+              placeholder="Ingrese factor 2"
               ref={respuesta2}
-              disabled={paso2Valido != null}
-            ></input>
+              isReadOnly={paso2Valido != null}
+            />
             <label htmlFor="label3">)</label>
-            &nbsp;
+            &nbsp;&nbsp;&nbsp;
             {paso2Valido == null && (
-              <Button colorScheme="cyan" variant="outline" onClick={comparar}>
+              <Button
+                colorScheme="cyan"
+                variant="outline"
+                onClick={comparar}
+                size="sm"
+              >
                 Aceptar
               </Button>
             )}
           </Flex>
-        </GridItem>
+        </WrapItem>
 
-        <GridItem colSpan={1}>
+        <WrapItem>
           {paso2Valido == null && (
             <Hint
               ejercicio={ejercicio.hints}
               setHintsTerminado={setHintsTerminado}
             ></Hint>
           )}
-        </GridItem>
-      </Grid>
+        </WrapItem>
+      </Wrap>
+      <br></br>
       {estado}
     </>
   );

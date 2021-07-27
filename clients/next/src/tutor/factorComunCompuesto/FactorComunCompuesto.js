@@ -13,6 +13,7 @@ import {
   AccordionIcon,
   Box,
   Alert,
+  Wrap,
 } from "@chakra-ui/react";
 
 const FCC = () => {
@@ -45,7 +46,9 @@ const FCC = () => {
       ></BreadcrumbTutor>
 
       {ejercicio.text}
-      <MathComponent tex={ejercicio.steps[0].expression} display={true} />
+      <Wrap justify="center">
+        <MathComponent tex={ejercicio.steps[0].expression} display={true} />
+      </Wrap>
 
       <Accordion allowToggle allowMultiple index={index} style={{ padding: 0 }}>
         <AccordionItem isFocusable={false}>

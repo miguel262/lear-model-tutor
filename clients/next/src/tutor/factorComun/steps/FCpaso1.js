@@ -1,16 +1,15 @@
 import React, { useRef, useState } from "react";
 import { MathComponent } from "../../../components/MathJax";
 import {
-  SimpleGrid,
-  Box,
   Alert,
   AlertIcon,
   Button,
-  AlertTitle,
-  AlertDescription,
   Flex,
   Grid,
   GridItem,
+  Input,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 
 import Hint from "../../tools/Hint";
@@ -39,7 +38,7 @@ const FCCpaso1 = ({
       setEstado(
         <Alert status="success">
           <AlertIcon />
-          <AlertTitle>{ejercicio.validation}</AlertTitle>
+          {ejercicio.validation}
         </Alert>
       );
       setPaso1Valido((paso1Valido = "Terminado"));
@@ -57,7 +56,67 @@ const FCCpaso1 = ({
   return (
     <>
       <br></br>
-      <Grid templateColumns="repeat(7, 1fr)" gap={1}>
+      <Wrap>
+        <WrapItem w={250}>
+          &nbsp; &nbsp;
+          <MathComponent
+            tex={String.raw`${ejercicio.expression}`}
+            display={false}
+          />
+        </WrapItem>
+
+        <WrapItem w={550}>
+          <Flex align="center">
+            <label>(&nbsp;</label>
+            <Input
+              style={{
+                textAlign: "center",
+                fontStyle: "italic",
+                fontWeight: "600",
+              }}
+              size="sm"
+              w="30%"
+              focusBorderColor="#9DECF9"
+              placeholder="Ingrese factor común"
+              ref={respuesta}
+              isReadOnly={paso1Valido != null}
+            />
+            <label>&nbsp;)</label>
+            {paso1Valido === null && (
+              <>
+                <label>&nbsp;(?)&nbsp;&nbsp;&nbsp;</label>
+                <Button
+                  colorScheme="cyan"
+                  size="sm"
+                  variant="outline"
+                  onClick={comparar}
+                >
+                  Aceptar
+                </Button>
+              </>
+            )}
+            {paso1Valido !== null && (
+              <>
+                <MathComponent
+                  tex={String.raw`${ejercicio.result}`}
+                  display={false}
+                />
+              </>
+            )}
+          </Flex>
+        </WrapItem>
+
+        <WrapItem>
+          {paso1Valido === null && (
+            <Hint
+              ejercicio={ejercicio.hints}
+              setHintsTerminado={setHintsTerminado}
+            ></Hint>
+          )}
+        </WrapItem>
+      </Wrap>
+      <br></br>
+      {/*<Grid templateColumns="repeat(7, 1fr)" gap={1}>
         <GridItem colSpan={2}>
           <Flex align="center">
             <p> &nbsp; &nbsp; </p>
@@ -71,23 +130,20 @@ const FCCpaso1 = ({
         <GridItem colSpan={4}>
           <Flex align="center">
             <label>(&nbsp;</label>
-            <input
-              size="10"
+            <Input
               style={{
-                backgroundColor: "#21232A",
-                border: "none",
-                color: "white",
                 textAlign: "center",
                 fontStyle: "italic",
+                fontWeight: "600",
               }}
-              type="text"
-              name="name"
-              className="form-control"
+              size="sm"
+              w="30%"
+              focusBorderColor="#9DECF9"
               placeholder="Ingrese factor común"
-              autoComplete="off"
               ref={respuesta}
-              disabled={paso1Valido != null}
-            ></input>
+              isReadOnly={paso1Valido != null}
+              //FormLabel={paso1Valido != null && "data-disabled"}
+            />
             <label>&nbsp;)</label>
             {paso1Valido === null && (
               <>
@@ -116,9 +172,8 @@ const FCCpaso1 = ({
             ></Hint>
           )}
         </GridItem>
-      </Grid>
+          </Grid>*/}
 
-      <br></br>
       {estado}
     </>
   );

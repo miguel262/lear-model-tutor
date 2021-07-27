@@ -17,7 +17,7 @@ export const Ejercicio1 = {
         { hintId: 1, hint: "Un valor a ingresar es 1" },
         {
           hintId: 2,
-          hint: "Los cuadrados son: (3x)^2 - (1)^2, donde los valores a ingresar son 3x y 1",
+          hint: "Los cuadrados son: (3x)² - (1)², donde los valores a ingresar son 3x y 1",
         },
       ],
       answers: [{ answer: ["3x", "1"], nextStep: "1" }],

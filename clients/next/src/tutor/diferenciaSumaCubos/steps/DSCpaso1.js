@@ -9,6 +9,9 @@ import {
   Grid,
   GridItem,
   Flex,
+  Input,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 
 export const DSCpaso1 = ({
@@ -57,8 +60,8 @@ export const DSCpaso1 = ({
   return (
     <>
       <br></br>
-      <Grid templateColumns="repeat(7, 1fr)" gap={1}>
-        <GridItem colSpan={2}>
+      <Wrap>
+        <WrapItem w={250}>
           <Flex align="center">
             <p> &nbsp; &nbsp; </p>
             <MathComponent
@@ -66,63 +69,63 @@ export const DSCpaso1 = ({
               display={false}
             />
           </Flex>
-        </GridItem>
+        </WrapItem>
 
-        <GridItem colSpan={4}>
+        <WrapItem w={550}>
           <Flex align="center">
             <label>( </label>
-            <input
-              size="12"
+            <Input
               style={{
-                backgroundColor: "#21232A",
-                border: "none",
-                color: "white",
                 textAlign: "center",
                 fontStyle: "italic",
+                fontWeight: "600",
               }}
-              type="text"
-              placeholder="Ingrese grupo 1"
-              autoComplete="off"
+              size="sm"
+              w="23%"
+              focusBorderColor="#9DECF9"
+              placeholder="Primera Raiz³"
               ref={respuesta1}
-              disabled={paso1Valido != null}
-            ></input>
-            <label htmlFor="label2">)</label>
-            <MathComponent tex={String.raw`^3`} display={false} />
+              isReadOnly={paso1Valido != null}
+            />
+            <label htmlFor="label2">)³</label>
             <label>&nbsp;{signo} ( </label>
-            <input
-              size="12"
+            <Input
               style={{
-                backgroundColor: "#21232A",
-                border: "none",
-                color: "white",
                 textAlign: "center",
                 fontStyle: "italic",
+                fontWeight: "600",
               }}
-              type="text"
-              placeholder="Ingrese grupo 2"
-              autoComplete="off"
+              size="sm"
+              w="23%"
+              focusBorderColor="#9DECF9"
+              placeholder="Segunda Raiz³"
               ref={respuesta2}
-              disabled={paso1Valido != null}
-            ></input>
-            <label htmlFor="label3">)</label>
-            <MathComponent tex={String.raw`^3`} display={false} /> &nbsp;
+              isReadOnly={paso1Valido != null}
+            />
+            <label htmlFor="label3">)³</label> &nbsp;&nbsp;&nbsp;
             {paso1Valido == null && (
-              <Button colorScheme="cyan" variant="outline" onClick={comparar}>
+              <Button
+                colorScheme="cyan"
+                variant="outline"
+                onClick={comparar}
+                size="sm"
+              >
                 Aceptar
               </Button>
             )}
           </Flex>
-        </GridItem>
+        </WrapItem>
 
-        <GridItem colSpan={1}>
+        <WrapItem>
           {paso1Valido == null && (
             <Hint
               ejercicio={ejercicio.hints}
               setHintsTerminado={setHintsTerminado}
             ></Hint>
           )}
-        </GridItem>
-      </Grid>
+        </WrapItem>
+      </Wrap>
+      <br></br>
       {paso1Valido == null && estado}
       {/* <Row  style={{color: "hotpink", padding: 0}}>
                 

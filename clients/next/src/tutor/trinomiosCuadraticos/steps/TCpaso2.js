@@ -8,6 +8,9 @@ import {
   Grid,
   GridItem,
   Flex,
+  Input,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 
 export const TCpaso2 = ({
@@ -58,8 +61,8 @@ export const TCpaso2 = ({
   return (
     <>
       <br></br>
-      <Grid templateColumns="repeat(7, 1fr)" gap={1}>
-        <GridItem colSpan={2}>
+      <Wrap>
+        <WrapItem w={250}>
           <Flex align="center">
             &nbsp; &nbsp;
             <MathComponent
@@ -67,137 +70,79 @@ export const TCpaso2 = ({
               display={false}
             />
           </Flex>
-        </GridItem>
+        </WrapItem>
 
-        <GridItem colSpan={4}>
+        <WrapItem w={550}>
           <Flex align="center">
             <label>a =</label>
-            <input
-              size="10"
+            <Input
               style={{
-                backgroundColor: "#21232A",
-                border: "none",
-                color: "white",
                 textAlign: "center",
+                fontStyle: "italic",
+                fontWeight: "600",
               }}
-              id="label1"
-              type="text"
-              name="name"
-              className="form-control"
+              size="sm"
+              w="20%"
+              focusBorderColor="#9DECF9"
               placeholder="Ingrese a"
-              autoComplete="off"
               ref={respuesta1}
-              disabled={paso2Valido != null}
-            ></input>
+              isReadOnly={paso2Valido != null}
+              //FormLabel={paso1Valido != null && "data-disabled"}
+            />
             <label> , b =</label>
-            <input
-              size="10"
+            <Input
               style={{
-                backgroundColor: "#21232A",
-                border: "none",
-                color: "white",
                 textAlign: "center",
+                fontStyle: "italic",
+                fontWeight: "600",
               }}
-              id="label2"
-              type="text"
-              name="name"
-              className="form-control"
+              size="sm"
+              w="20%"
+              focusBorderColor="#9DECF9"
               placeholder="Ingrese b"
-              autoComplete="off"
               ref={respuesta2}
-              disabled={paso2Valido != null}
-            ></input>
+              isReadOnly={paso2Valido != null}
+              //FormLabel={paso1Valido != null && "data-disabled"}
+            />
             <label>, c = &nbsp;</label>
-            <input
-              size="10"
+            <Input
               style={{
-                backgroundColor: "#21232A",
-                border: "none",
-                color: "white",
                 textAlign: "center",
+                fontStyle: "italic",
+                fontWeight: "600",
               }}
-              id="label2"
-              type="text"
-              name="name"
-              className="form-control"
+              size="sm"
+              w="20%"
+              focusBorderColor="#9DECF9"
               placeholder="Ingrese c"
-              autoComplete="off"
               ref={respuesta3}
-              disabled={paso2Valido != null}
-            ></input>
-            &nbsp;&nbsp;
+              isReadOnly={paso2Valido != null}
+              //FormLabel={paso1Valido != null && "data-disabled"}
+            />
+            &nbsp;&nbsp;&nbsp;
             {paso2Valido == null && (
-              <Button colorScheme="cyan" variant="outline" onClick={comparar}>
+              <Button
+                colorScheme="cyan"
+                variant="outline"
+                onClick={comparar}
+                size="sm"
+              >
                 Aceptar
               </Button>
             )}
           </Flex>
-        </GridItem>
+        </WrapItem>
 
-        <GridItem colSpan={1}>
+        <WrapItem>
           {paso2Valido == null && (
             <Hint
               ejercicio={ejercicio.hints}
               setHintsTerminado={setHintsTerminado}
             ></Hint>
           )}
-        </GridItem>
-      </Grid>
-      {/*
-            <Row  style={{color: "hotpink", padding: 0}}>
-                <Col xl= "3" style={{padding: 26.5}}>    
-                    <MathComponent tex={String.raw`${ejercicio.expresion}`}  display={false}/>
-                </Col>
-                <Col xl= "5" style={{padding: 0}}> 
-                {hintsTerminado===null&&<div className="input-group">
-                        <label htmlFor="label1">a =</label>
-                        <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
-                            id="label1"
-                            type="text" 
-                            name="name"
-                            className="form-control"
-                            placeholder="Ingrese a"
-                            autoComplete= "off"
-                            ref= {respuesta1}
-                            disabled = {paso2Valido!=null}
-                        ></input>
-                        <label htmlFor="label2"> , b =</label>
-                        <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
-                            id="label2"
-                            type="text" 
-                            name="name"
-                            className="form-control"
-                            placeholder="Ingrese b"
-                            autoComplete= "off"
-                            ref= {respuesta2}
-                            disabled = {paso2Valido!=null}
-                        ></input>
-                        <label htmlFor="label3">, c = &nbsp;</label>
-                        <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
-                            id="label2"
-                            type="text" 
-                            name="name"
-                            className="form-control"
-                            placeholder="Ingrese c"
-                            autoComplete= "off"
-                            ref= {respuesta3}
-                            disabled = {paso2Valido!=null}
-                        ></input>
-                        {paso2Valido==null&&<button 
-                            id="label3"
-                            type="submit" 
-                            className="btn btn-outline-success"
-                            onClick={comparar}
-                        >
-                            Aceptar
-                        </button>}
-                    </div>}
-                    {hintsTerminado!==null&& <div> <p>{ejercicio.hint_solicitado[hintsTerminado]}</p> </div>}       
-                </Col>
-                <Col xl="4" style={{padding: 0}}> 
-                {paso2Valido==null&&hintsTerminado===null&&<Hint ejercicio={ejercicio.hint_solicitado} setHintsTerminado ={setHintsTerminado}></Hint>}
-                </Col> 
-                        </Row>*/}
+        </WrapItem>
+      </Wrap>
+      <br></br>
       {paso2Valido == null && hintsTerminado === null && estado}
     </>
   );

@@ -12,6 +12,7 @@ import {
   AccordionIcon,
   Box,
   Alert,
+  Wrap,
 } from "@chakra-ui/react";
 
 //react functional component
@@ -41,8 +42,9 @@ const DSC = () => {
       ></BreadcrumbTutor>
 
       {ejercicio.text}
-      <MathComponent tex={ejercicio.steps[0].expression} display={false} />
-
+      <Wrap justify="center">
+        <MathComponent tex={ejercicio.steps[0].expression} display={true} />
+      </Wrap>
       <Accordion allowToggle allowMultiple index={index} style={{ padding: 0 }}>
         <AccordionItem isFocusable={false}>
           <Alert status={paso1Valido == null ? "info" : "success"}>

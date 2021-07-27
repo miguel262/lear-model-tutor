@@ -12,8 +12,7 @@ export const Tutor = () => {
         //<FC ejercicio={Ejercicio1}></FC>
         //<FCC></FCC>
       }
-
-      <TC></TC>
+      <FC ejercicio={Ejercicio1}></FC>
     </>
   );
 };

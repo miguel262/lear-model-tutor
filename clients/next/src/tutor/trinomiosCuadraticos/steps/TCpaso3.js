@@ -8,6 +8,9 @@ import {
   Grid,
   GridItem,
   Flex,
+  Input,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 
 export const TCpaso3 = ({
@@ -58,8 +61,8 @@ export const TCpaso3 = ({
   return (
     <>
       <br></br>
-      <Grid templateColumns="repeat(7, 1fr)" gap={1}>
-        <GridItem colSpan={2}>
+      <Wrap>
+        <WrapItem w={250}>
           <Flex align="center">
             &nbsp; &nbsp;
             <MathComponent
@@ -67,80 +70,49 @@ export const TCpaso3 = ({
               display={false}
             />
           </Flex>
-        </GridItem>
+        </WrapItem>
 
-        <GridItem colSpan={4}>
+        <WrapItem w={550}>
           <Flex align="center">
             <label>Δ = &nbsp;</label>
-            <input
-              size="13"
+            <Input
               style={{
-                backgroundColor: "#21232A",
-                border: "none",
-                color: "white",
                 textAlign: "center",
+                fontStyle: "italic",
+                fontWeight: "600",
               }}
-              id="label1"
-              type="text"
-              name="name"
-              className="form-control"
+              size="sm"
+              w="30%"
+              focusBorderColor="#9DECF9"
               placeholder="Ingrese discriminante"
-              autoComplete="off"
               ref={respuesta}
-              disabled={paso3Valido != null}
-            ></input>
-            &nbsp;&nbsp;
+              isReadOnly={paso3Valido != null}
+            />
+            &nbsp;&nbsp;&nbsp;
             {paso3Valido == null && (
-              <Button colorScheme="cyan" variant="outline" onClick={comparar}>
+              <Button
+                colorScheme="cyan"
+                variant="outline"
+                onClick={comparar}
+                size="sm"
+              >
                 Aceptar
               </Button>
             )}
           </Flex>
-        </GridItem>
+        </WrapItem>
 
-        <GridItem colSpan={1}>
+        <WrapItem>
           {paso3Valido == null && (
             <Hint
               ejercicio={ejercicio.hints}
               setHintsTerminado={setHintsTerminado}
             ></Hint>
           )}
-        </GridItem>
-      </Grid>
+        </WrapItem>
+      </Wrap>
+      <br></br>
       {paso3Valido == null && hintsTerminado === null && estado}
-
-      {/* 
-            <Row  style={{ padding: 0}}>
-                <Col md="12" xl="3" style={{padding: 26.5}}>    
-                    <MathComponent tex={String.raw`${ejercicio.expresion}`}  display={false}/>
-                </Col>
-                <Col md="5" xl="4" style={{padding: 0}}> 
-                {hintsTerminado===null&&<div className="input-group">
-                        <label htmlFor="label3">Δ = &nbsp;</label>
-                        <input style={{backgroundColor: "#21232A",border: "none",color:"white",textAlign:"center"}}
-                            type="text" 
-                            name="name"
-                            className="form-control"
-                            placeholder="Ingrese discriminante"
-                            autoComplete= "off"
-                            ref= {respuesta}
-                            disabled = {paso3Valido!=null}
-                        ></input>
-                        {paso3Valido==null&&<button 
-                            type="submit" 
-                            className="btn btn-outline-success"
-                            onClick={comparar}
-                        >
-                            Aceptar
-                        </button>}
-                      </div>}
-                      {hintsTerminado!==null&& <div> <p>{ejercicio.hint_solicitado[hintsTerminado]}</p> </div>}        
-                </Col>
-                <Col md = "7" xl="5" style={{padding: 0}}> 
-                {paso3Valido==null&&hintsTerminado===null&&<Hint ejercicio={ejercicio.hint_solicitado} setHintsTerminado ={setHintsTerminado}></Hint>}
-                </Col> 
-                {paso3Valido==null&&hintsTerminado===null&&estado}
-                        </Row>  */}
     </>
   );
 };

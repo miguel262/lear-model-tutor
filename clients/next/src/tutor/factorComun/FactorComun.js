@@ -14,6 +14,7 @@ import {
   AccordionIcon,
   Alert,
   Box,
+  Wrap,
 } from "@chakra-ui/react";
 //react functional component
 
@@ -31,7 +32,10 @@ const FC = ({ ejercicio }) => {
       ></BreadcrumbTutor>
 
       {ejercicio.text}
-      <MathComponent tex={ejercicio.steps[0].expression} display={true} />
+
+      <Wrap justify="center">
+        <MathComponent tex={ejercicio.steps[0].expression} display={true} />
+      </Wrap>
 
       <Accordion defaultIndex={[0]} allowMultiple>
         <AccordionItem>

@@ -8,6 +8,9 @@ import {
   Grid,
   GridItem,
   Flex,
+  Input,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react";
 
 const FCCpaso1 = ({
@@ -53,8 +56,8 @@ const FCCpaso1 = ({
   return (
     <>
       <br></br>
-      <Grid templateColumns="repeat(7, 1fr)" gap={1}>
-        <GridItem colSpan={2}>
+      <Wrap>
+        <WrapItem w={250}>
           <Flex align="center">
             <p> &nbsp; &nbsp; </p>
             <MathComponent
@@ -62,60 +65,59 @@ const FCCpaso1 = ({
               display={false}
             />
           </Flex>
-        </GridItem>
+        </WrapItem>
 
-        <GridItem colSpan={4}>
+        <WrapItem w={550}>
           <label>( </label>
-          <input
-            size="12"
+          <Input
             style={{
-              backgroundColor: "#21232A",
-              border: "none",
-              color: "white",
               textAlign: "center",
               fontStyle: "italic",
-              //fontFamily: "computer modern sans",
+              fontWeight: "600",
             }}
-            type="text"
+            size="sm"
+            w="23%"
+            focusBorderColor="#9DECF9"
             placeholder="Ingrese grupo 1"
-            autoComplete="off"
             ref={respuesta1}
-            disabled={paso1Valido != null}
-          ></input>
+            isReadOnly={paso1Valido != null}
+          />
           <label> )&nbsp;+&nbsp;( </label>
-          <input
-            size="12"
+          <Input
             style={{
-              backgroundColor: "#21232A",
-              border: "none",
-              color: "white",
               textAlign: "center",
               fontStyle: "italic",
-              //fontFamily: "computer modern",
+              fontWeight: "600",
             }}
-            type="text"
+            size="sm"
+            w="23%"
+            focusBorderColor="#9DECF9"
             placeholder="Ingrese grupo 2"
-            autoComplete="off"
             ref={respuesta2}
-            disabled={paso1Valido != null}
-          ></input>
-          <label> ) </label>
+            isReadOnly={paso1Valido != null}
+          />
+          <label> )&nbsp;&nbsp;&nbsp; </label>
           {paso1Valido == null && (
-            <Button colorScheme="cyan" variant="outline" onClick={comparar}>
+            <Button
+              colorScheme="cyan"
+              variant="outline"
+              onClick={comparar}
+              size="sm"
+            >
               Aceptar
             </Button>
           )}
-        </GridItem>
+        </WrapItem>
 
-        <GridItem colSpan={1}>
+        <WrapItem>
           {paso1Valido === null && (
             <Hint
               ejercicio={ejercicio.hints}
               setHintsTerminado={setHintsTerminado}
             ></Hint>
           )}
-        </GridItem>
-      </Grid>
+        </WrapItem>
+      </Wrap>
       <br></br>
 
       {paso1Valido == null && estado}

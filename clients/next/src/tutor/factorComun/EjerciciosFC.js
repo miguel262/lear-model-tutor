@@ -13,7 +13,7 @@ export const Ejercicio1 = {
       hints: [
         {
           hintId: 0,
-          hint: "Un factor común de esta ecuación es 3, pero la eexpresión todavía es factorizable",
+          hint: "Un factor común de esta expresión es 3, pero todavía es factorizable",
         },
         {
           hintId: 1,
@@ -48,7 +48,7 @@ export const Ejercicio2 = {
       hints: [
         {
           hintId: 0,
-          hint: "Un factor común de esta ecuación es 5/3, pero la eexpresión todavía es factorizable",
+          hint: "Un factor común de esta expresión es 5/3, pero la expresión todavía es factorizable",
         },
         {
           hintId: 1,

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Ejercicio1 } from "./EjerciciosTC";
+import { Ejercicio2 } from "./EjerciciosTC";
 import { MathComponent } from "../../components/MathJax";
 import { BreadcrumbTutor } from "../tools/BreadcrumbTutor";
 import { TCpaso1 } from "./steps/TCpaso1";
 import { TCpaso2 } from "./steps/TCpaso2";
 import { TCpaso3 } from "./steps/TCpaso3";
 import { TCpaso4 } from "./steps/TCpaso4";
-//import { TCpaso5 } from './ejercicio/TCpaso5';
-//import { TCpaso6 } from './ejercicio/TCpaso6';
+import { TCpaso5 } from "./steps/TCpaso5";
+import { TCpaso6 } from "./steps/TCpaso6";
 
 import {
   Accordion,
@@ -17,12 +17,13 @@ import {
   AccordionIcon,
   Box,
   Alert,
+  Wrap,
 } from "@chakra-ui/react";
 
 //react functional component
 const TC = () => {
   //const ejemplo = Ejercicio1;
-  const ejercicio = Ejercicio1;
+  const ejercicio = Ejercicio2;
   const [paso1Valido, setPaso1Valido] = useState(null);
   const [paso2Valido, setPaso2Valido] = useState(null);
   const [paso3Valido, setPaso3Valido] = useState(null);
@@ -34,7 +35,7 @@ const TC = () => {
   const [hintsTerminado3, setHintsTerminado3] = useState(null);
   const [hintsTerminado5, setHintsTerminado5] = useState(null);
   const [hintsTerminado6, setHintsTerminado6] = useState(null);
-  const [index, setIndex] = useState([0, 1, 2, 3]);
+  const [index, setIndex] = useState([0]);
 
   useEffect(() => {
     //cierra paso 1 al completarlo
@@ -57,6 +58,20 @@ const TC = () => {
     }
   }, [paso3Valido]);
 
+  useEffect(() => {
+    //cierra paso 3 al completarlo
+    if (paso4Valido != null) {
+      setIndex([4]);
+    }
+  }, [paso4Valido]);
+
+  useEffect(() => {
+    //cierra paso 3 al completarlo
+    if (paso5Valido != null) {
+      setIndex([5]);
+    }
+  }, [paso5Valido]);
+
   return (
     <div>
       {/*Ejemplo diferencia de cubos 
@@ -68,7 +83,9 @@ const TC = () => {
       ></BreadcrumbTutor>
 
       {ejercicio.text}
-      <MathComponent tex={ejercicio.steps[0].expression} display={false} />
+      <Wrap justify="center">
+        <MathComponent tex={ejercicio.steps[0].expression} display={true} />
+      </Wrap>
 
       <Accordion allowToggle allowMultiple index={index} style={{ padding: 0 }}>
         <AccordionItem isFocusable={false}>
@@ -189,6 +206,69 @@ const TC = () => {
                 hintsTerminado={hintsTerminado3}
                 setHintsTerminado={setHintsTerminado3}
               ></TCpaso4>
+            )}
+          </AccordionPanel>
+        </AccordionItem>
+
+        <AccordionItem>
+          <Alert status={paso5Valido == null ? "info" : "success"}>
+            <AccordionButton
+              onClick={() => {
+                if (index.some((element) => element === 4)) {
+                  setIndex(index.filter((e) => e !== 4));
+                } else {
+                  setIndex(index.concat(4));
+                }
+              }}
+            >
+              <Box flex="1" textAlign="left">
+                {ejercicio.steps[4].step}
+                {paso5Valido != null && "    ✔ "}
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </Alert>
+          <AccordionPanel style={{ padding: 0 }}>
+            {paso4Valido != null && (
+              <TCpaso5
+                ejercicio={ejercicio.steps[4]}
+                setPaso5Valido={setPaso5Valido}
+                paso5Valido={paso5Valido}
+                hintsTerminado={hintsTerminado5}
+                setHintsTerminado={setHintsTerminado5}
+              ></TCpaso5>
+            )}
+          </AccordionPanel>
+        </AccordionItem>
+
+        <AccordionItem>
+          <Alert status={paso6Valido == null ? "info" : "success"}>
+            <AccordionButton
+              onClick={() => {
+                if (index.some((element) => element === 5)) {
+                  setIndex(index.filter((e) => e !== 5));
+                } else {
+                  setIndex(index.concat(5));
+                }
+              }}
+            >
+              <Box flex="1" textAlign="left">
+                {ejercicio.steps[5].step}
+                {paso6Valido != null && "    ✔ "}
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </Alert>
+          <AccordionPanel style={{ padding: 0 }}>
+            {paso5Valido != null && (
+              <TCpaso6
+                ejercicio={ejercicio.steps[5]}
+                setPaso6Valido={setPaso6Valido}
+                paso6Valido={paso6Valido}
+                hintsTerminado={hintsTerminado6}
+                setHintsTerminado={setHintsTerminado6}
+                a={ejercicio.steps[0].answers[0].answer}
+              ></TCpaso6>
             )}
           </AccordionPanel>
         </AccordionItem>
